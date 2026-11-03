@@ -55,4 +55,9 @@ export const KV = {
   feishu: { chats: record<Record<string, boolean>>('feishu-chats'), history: family<string, [chat: string]>('feishu-history:'),
     topics: family<Record<string, string>, [chat: string]>('feishu-history-threads:'),
     seen: family<string[], [thread: string]>('thread-seen:'), initialized: family<boolean, [thread: string]>('thread-initialized:') },
+  /**
+   * Silk Source: per-group message read cursor in epoch milliseconds; a group polled for the first time
+   * starts from that moment so joining a group never replays its history as Triggers.
+   */
+  silk: { cursor: family<number, [group: string]>('silk-cursor:') },
 }
